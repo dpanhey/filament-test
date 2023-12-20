@@ -168,6 +168,9 @@
       <path value="$PROJECT_DIR$/vendor/composer" />
       <path value="$PROJECT_DIR$/vendor/_laravel_idea" />
       <path value="$PROJECT_DIR$/vendor/flowframe/laravel-trend" />
+      <path value="$PROJECT_DIR$/vendor/laravel-shift/blueprint" />
+      <path value="$PROJECT_DIR$/vendor/laravel-shift/faker-registry" />
+      <path value="$PROJECT_DIR$/vendor/jasonmccreary/laravel-test-assertions" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />
