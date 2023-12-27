@@ -5,6 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use App\Models\Character;
+use App\Models\CharacterSkill;
 use App\Models\CharacterType;
 use App\Models\Culture;
 use App\Models\ExperienceLevel;
@@ -53,6 +54,7 @@ class CharacterFactory extends Factory
             'image' => $this->faker->regexify('[A-Za-z0-9]{255}'),
             'alive' => $this->faker->boolean(),
             'character_type_id' => CharacterType::factory(),
+            'character_skill_id' => CharacterSkill::factory(),
         ];
     }
 }

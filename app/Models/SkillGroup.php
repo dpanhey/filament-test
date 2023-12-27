@@ -17,7 +17,7 @@ class SkillGroup extends Model
     protected $fillable = [
         'name',
         'description',
-        'group_check',
+        'check',
     ];
 
     /**
@@ -27,5 +27,6 @@ class SkillGroup extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        'check' => 'array',
     ];
 }

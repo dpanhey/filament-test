@@ -23,7 +23,8 @@ class CombatTechniquesFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'primary_attribute' => $this->faker->randomElement(["DEX","AGI","STR"]),
+            'description' => $this->faker->text(),
+            'primary_attribute' => '{}',
             'improvement_cost_id' => ImprovementCost::factory(),
         ];
     }

@@ -21,7 +21,6 @@ class Adventure extends Model
         'owner_id',
         'name',
         'description',
-        'adventure_type',
     ];
 
     /**

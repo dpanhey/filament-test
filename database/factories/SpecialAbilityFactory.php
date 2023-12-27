@@ -5,6 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use App\Models\SpecialAbility;
+use App\Models\SpecialAbilityType;
 
 class SpecialAbilityFactory extends Factory
 {
@@ -23,7 +24,7 @@ class SpecialAbilityFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'description' => $this->faker->text(),
-            'ability_type' => $this->faker->randomElement(["General Special Ability","Magical Special Ability","Blessed Special Ability","Combat Special Ability"]),
+            'special_ability_type' => SpecialAbilityType::factory(),
             'rules' => $this->faker->text(),
             'requirements' => $this->faker->regexify('[A-Za-z0-9]{100}'),
             'ap_value' => $this->faker->word(),

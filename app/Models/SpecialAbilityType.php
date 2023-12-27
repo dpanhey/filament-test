@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Blessing extends Model
+class SpecialAbilityType extends Model
 {
     use HasFactory;
 
@@ -17,12 +17,6 @@ class Blessing extends Model
     protected $fillable = [
         'name',
         'description',
-        'aspect_group',
-        'aspect',
-        'range',
-        'duration',
-        'target_category',
-        'url',
     ];
 
     /**
@@ -32,7 +26,5 @@ class Blessing extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'aspect_group' => 'array',
-        'aspect' => 'array',
     ];
 }

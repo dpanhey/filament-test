@@ -44,6 +44,7 @@ class Character extends Model
         'image',
         'alive',
         'character_type_id',
+        'character_skill_id',
     ];
 
     /**
@@ -63,6 +64,7 @@ class Character extends Model
         'experience_level_id' => 'integer',
         'alive' => 'boolean',
         'character_type_id' => 'integer',
+        'character_skill_id' => 'integer',
     ];
 
     public function entries(): MorphMany
@@ -98,5 +100,10 @@ class Character extends Model
     public function characterType(): BelongsTo
     {
         return $this->belongsTo(CharacterType::class);
+    }
+
+    public function characterSkill(): BelongsTo
+    {
+        return $this->belongsTo(CharacterSkill::class);
     }
 }

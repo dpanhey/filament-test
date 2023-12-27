@@ -23,7 +23,7 @@ class SkillGroupFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'description' => $this->faker->text(),
-            'group_check' => $this->faker->randomElement(["COU","SGC","DEX","AGI","CON","STR",""]),
+            'check' => '{}',
         ];
     }
 }

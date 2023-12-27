@@ -5,6 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use App\Models\Cantrip;
+use App\Models\Property;
 
 class CantripFactory extends Factory
 {
@@ -26,7 +27,7 @@ class CantripFactory extends Factory
             'range' => $this->faker->regexify('[A-Za-z0-9]{100}'),
             'duration' => $this->faker->regexify('[A-Za-z0-9]{100}'),
             'target_category' => $this->faker->regexify('[A-Za-z0-9]{100}'),
-            'property' => $this->faker->randomElement(["Anti-Magic","Clairvoyance","Demonic","Elemental","Healing","Illusion","Influence","Object","Spheres","Telekinesis","Transformation"]),
+            'property_id' => Property::factory(),
             'url' => $this->faker->url(),
         ];
     }

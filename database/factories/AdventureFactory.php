@@ -25,7 +25,6 @@ class AdventureFactory extends Factory
             'owner_id' => User::factory(),
             'name' => $this->faker->name(),
             'description' => $this->faker->text(),
-            'adventure_type' => $this->faker->randomElement(["Kampagne","Abenteuer","Kurzabenteuer","Soloabenteuer","Szenario"]),
         ];
     }
 }

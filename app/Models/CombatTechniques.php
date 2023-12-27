@@ -17,6 +17,7 @@ class CombatTechniques extends Model
      */
     protected $fillable = [
         'name',
+        'description',
         'primary_attribute',
         'improvement_cost_id',
     ];
@@ -28,6 +29,7 @@ class CombatTechniques extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        'primary_attribute' => 'array',
         'improvement_cost_id' => 'integer',
     ];
 

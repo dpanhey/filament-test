@@ -21,7 +21,6 @@ class ArmorFactory extends Factory
     public function definition(): array
     {
         return [
-            'armor_type' => $this->faker->randomElement(["Normal clothing","Heavy clothing","Cloth armor","Leather armor","Chain mail","Scale mail","Plate mail"]),
             'name' => $this->faker->name(),
             'description' => $this->faker->text(),
             'protection' => $this->faker->word(),

@@ -25,7 +25,6 @@ class CloseCombatWeapon extends Model
         'damage_points',
         'attack_modification',
         'parry_modification',
-        'reach',
         'weight',
         'cost',
         'url',
@@ -40,6 +39,7 @@ class CloseCombatWeapon extends Model
         'id' => 'integer',
         'weapon_type_id' => 'integer',
         'combat_technique_id' => 'integer',
+        'conductive_property' => 'array',
         'weight' => 'decimal:2',
         'cost' => 'decimal:2',
     ];

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class SpecialAbility extends Model
 {
@@ -17,7 +18,7 @@ class SpecialAbility extends Model
     protected $fillable = [
         'name',
         'description',
-        'ability_type',
+        'special_ability_type',
         'rules',
         'requirements',
         'ap_value',
@@ -31,5 +32,11 @@ class SpecialAbility extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        'special_ability_type' => 'integer',
     ];
+
+    public function specialAbilityType(): BelongsTo
+    {
+        return $this->belongsTo(SpecialAbilityType::class);
+    }
 }

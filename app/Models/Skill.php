@@ -32,6 +32,7 @@ class Skill extends Model
     protected $casts = [
         'id' => 'integer',
         'skill_group_id' => 'integer',
+        'check' => 'array',
         'encumbrance' => 'boolean',
         'improvement_cost_id' => 'integer',
     ];

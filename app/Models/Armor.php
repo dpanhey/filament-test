@@ -15,7 +15,6 @@ class Armor extends Model
      * @var array
      */
     protected $fillable = [
-        'armor_type',
         'name',
         'description',
         'protection',

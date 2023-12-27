@@ -25,7 +25,7 @@ class SpellRitual extends Model
         'range',
         'duration',
         'target_category',
-        'property',
+        'property_id',
         'improvement_cost_id',
         'url',
     ];
@@ -37,8 +37,15 @@ class SpellRitual extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        'check' => 'array',
+        'property_id' => 'integer',
         'improvement_cost_id' => 'integer',
     ];
+
+    public function property(): BelongsTo
+    {
+        return $this->belongsTo(Property::class);
+    }
 
     public function improvementCost(): BelongsTo
     {

@@ -18,6 +18,8 @@ class ChantCeremony extends Model
     protected $fillable = [
         'name',
         'description',
+        'aspect_group',
+        'aspect',
         'effect',
         'check',
         'kp_cost',
@@ -25,8 +27,6 @@ class ChantCeremony extends Model
         'range',
         'duration',
         'target_category',
-        'aspect_group',
-        'aspect',
         'improvement_cost_id',
         'url',
     ];
@@ -38,6 +38,9 @@ class ChantCeremony extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        'aspect_group' => 'array',
+        'aspect' => 'array',
+        'check' => 'array',
         'improvement_cost_id' => 'integer',
     ];
 

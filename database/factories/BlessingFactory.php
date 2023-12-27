@@ -23,11 +23,11 @@ class BlessingFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'description' => $this->faker->text(),
+            'aspect_group' => '{}',
+            'aspect' => '{}',
             'range' => $this->faker->regexify('[A-Za-z0-9]{100}'),
             'duration' => $this->faker->regexify('[A-Za-z0-9]{100}'),
             'target_category' => $this->faker->regexify('[A-Za-z0-9]{100}'),
-            'aspect_group' => $this->faker->randomElement(["Praios","Rondra","Boron","Hesinde","Phex","Peraine"]),
-            'aspect' => $this->faker->randomElement(["\"Anti-magic\"","Order","Shield","Storm","Death","Dream","Magic","Knowledge","Commerce","Shadow","Healing","Agriculture"]),
             'url' => $this->faker->url(),
         ];
     }

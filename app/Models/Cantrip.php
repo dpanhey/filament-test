@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Cantrip extends Model
 {
@@ -20,7 +21,7 @@ class Cantrip extends Model
         'range',
         'duration',
         'target_category',
-        'property',
+        'property_id',
         'url',
     ];
 
@@ -31,5 +32,11 @@ class Cantrip extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        'property_id' => 'integer',
     ];
+
+    public function property(): BelongsTo
+    {
+        return $this->belongsTo(Property::class);
+    }
 }
