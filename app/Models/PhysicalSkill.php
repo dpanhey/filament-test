@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SkillGroup extends Model
+class PhysicalSkill extends Model
 {
     use HasFactory;
 
@@ -15,9 +15,11 @@ class SkillGroup extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
-        'description',
-        'check',
+        'body_control',
+        'carousing',
+        'climbing',
+        'dancing',
+        'feat_of_strength',
     ];
 
     /**
@@ -27,6 +29,5 @@ class SkillGroup extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'check' => 'array',
     ];
 }

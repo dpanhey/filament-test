@@ -13,10 +13,13 @@ return new class extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('attributes', function (Blueprint $table) {
+        Schema::create('physical_skills', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 100);
-            $table->text('description')->nullable();
+            $table->string('body_control');
+            $table->string('carousing');
+            $table->string('climbing');
+            $table->string('dancing');
+            $table->string('feat_of_strength');
             $table->timestamps();
         });
 
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('attributes');
+        Schema::dropIfExists('physical_skills');
     }
 };

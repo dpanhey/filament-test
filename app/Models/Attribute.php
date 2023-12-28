@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Attribute extends Model
 {
@@ -15,8 +16,25 @@ class Attribute extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
-        'description',
+        'character_id',
+        'courage',
+        'sagacity',
+        'intuition',
+        'charisma',
+        'dexterity',
+        'agility',
+        'constitution',
+        'strength',
+        'life_points',
+        'arcane_energy',
+        'karma_points',
+        'spirit',
+        'toughness',
+        'dodge',
+        'initiative',
+        'movement',
+        'fate_points',
+        'carrying_capacity',
     ];
 
     /**
@@ -26,5 +44,11 @@ class Attribute extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        'character_id' => 'integer',
     ];
+
+    public function character(): BelongsTo
+    {
+        return $this->belongsTo(Character::class);
+    }
 }
