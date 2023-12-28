@@ -17,6 +17,8 @@ class AdvantageResource extends Resource
 {
     protected static ?string $model = Advantage::class;
 
+    protected static ?string $navigationGroup = 'Vor- & Nachteile';
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form

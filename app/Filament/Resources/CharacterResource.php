@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\CharacterResource\Pages;
 use App\Filament\Resources\CharacterResource\RelationManagers;
 use App\Models\Character;
+use Faker\Provider\Text;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Infolists;
@@ -60,6 +61,54 @@ class CharacterResource extends Resource
                             ])
                             ->columns(8),
                     ]),
+                Forms\Components\Fieldset::make('Meta-Daten')
+                    ->schema([
+                        Forms\Components\Select::make('character_type_id')
+                            ->relationship('characterType', 'name')
+                            ->createOptionForm([
+                                Forms\Components\TextInput::make('name')
+                                    ->required(),
+                            ]),
+                        Forms\Components\Select::make('experience_level_id')
+                            ->relationship('experienceLevel', 'name')
+                            ->createOptionForm([
+                                Forms\Components\TextInput::make('name')
+                                    ->required(),
+                                Forms\Components\TextInput::make('adventure_points')
+                                    ->required()
+                                    ->numeric(),
+                                Forms\Components\TextInput::make('maximum_attribute_value')
+                                    ->required()
+                                    ->numeric(),
+                                Forms\Components\TextInput::make('maximum_skill_value')
+                                    ->required()
+                                    ->numeric(),
+                                Forms\Components\TextInput::make('maximum_combat_technique_value')
+                                    ->required()
+                                    ->numeric(),
+                                Forms\Components\TextInput::make('maximum_attribute_points')
+                                    ->required()
+                                    ->numeric(),
+                                Forms\Components\TextInput::make('total_number_spells_rituals')
+                                    ->required()
+                                    ->numeric(),
+                                Forms\Components\TextInput::make('number_foreign_spells')
+                                    ->required()
+                                    ->numeric(),
+                            ]),
+                        Forms\Components\TextInput::make('total_ap')
+                            ->required()
+                            ->numeric(),
+                        Forms\Components\TextInput::make('ap_unused')
+                            ->required()
+                            ->numeric(),
+                        Forms\Components\TextInput::make('ap_used')
+                            ->required()
+                            ->numeric(),
+                        Forms\Components\Toggle::make('alive')
+                            ->required(),
+                    ])
+                ->columns(3),
                 Forms\Components\Fieldset::make('Persönliche Daten')
                     ->schema([
                         Forms\Components\TextInput::make('character_name'),
@@ -80,11 +129,36 @@ class CharacterResource extends Resource
                         Forms\Components\TextInput::make('title'),
                         Forms\Components\TextInput::make('social_status'),
                         Forms\Components\Select::make('species_id')
-                            ->relationship('species', 'name'),
+                            ->relationship('species', 'name')
+                            ->createOptionForm([
+                                Forms\Components\TextInput::make('name')
+                                    ->required(),
+                                Forms\Components\TextInput::make('ap_value')
+                                    ->required()
+                                    ->numeric(),
+                            ]),
                         Forms\Components\Select::make('culture_id')
-                            ->relationship('culture', 'name'),
+                            ->relationship('culture', 'name')
+                            ->createOptionForm([
+                                Forms\Components\TextInput::make('name')
+                                    ->required(),
+                                Forms\Components\TextInput::make('ap_value')
+                                    ->required()
+                                    ->numeric(),
+                            ]),
                         Forms\Components\Select::make('profession_id')
-                            ->relationship('profession', 'name'),
+                            ->relationship('profession', 'name')
+                            ->createOptionForm([
+                                Forms\Components\TextInput::make('name')
+                                    ->required(),
+                                Forms\Components\Select::make('profession_group_id')
+                                    ->relationship('professionGroup', 'name')
+                                    ->required()
+                                    ->createOptionForm([
+                                        Forms\Components\TextInput::make('name')
+                                            ->required()
+                                    ]),
+                            ]),
                         Forms\Components\Textarea::make('characteristics')
                             ->columnSpan(2),
                         Forms\Components\Textarea::make('backstory')
@@ -157,7 +231,11 @@ class CharacterResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('character_name')
+                Tables\Columns\TextColumn::make('character_name'),
+                Tables\Columns\TextColumn::make('profession.name'),
+                Tables\Columns\TextColumn::make('species.name'),
+                Tables\Columns\TextColumn::make('culture.name'),
+                Tables\Columns\TextColumn::make('characterType.name')
             ])
             ->filters([
                 //
@@ -192,11 +270,11 @@ class CharacterResource extends Resource
                         Infolists\Components\TextEntry::make('eye_color'),
                         Infolists\Components\TextEntry::make('title'),
                         Infolists\Components\TextEntry::make('social_status'),
-                        Infolists\Components\TextEntry::make('species_id')
+                        Infolists\Components\TextEntry::make('species.name')
                             ->label('Species'),
-                        Infolists\Components\TextEntry::make('culture_id')
+                        Infolists\Components\TextEntry::make('culture.name')
                             ->label('Culture'),
-                        Infolists\Components\TextEntry::make('profession_id')
+                        Infolists\Components\TextEntry::make('profession.name')
                             ->label('Profession'),
                         Infolists\Components\TextEntry::make('characteristics')
                             ->columnSpan(2),
@@ -229,7 +307,9 @@ class CharacterResource extends Resource
     public static function getRecordSubNavigation(Page $page): array
     {
         return $page->generateNavigationItems([
-            //
+            Pages\ListCharacters::class,
+            Pages\ViewCharacter::class,
+            Pages\EditCharacter::class,
         ]);
     }
 }
