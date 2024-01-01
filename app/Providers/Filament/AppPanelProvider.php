@@ -28,6 +28,7 @@ class AppPanelProvider extends PanelProvider
             ->path('/app')
             ->login()
             ->topNavigation()
+            ->spa()
             ->colors([
                 'primary' => Color::Teal,
                 'gray' => Color::Sky,

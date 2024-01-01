@@ -28,202 +28,7 @@ class CharacterResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Group::make()
-                    ->relationship('attributes')
-                    ->columnSpanFull()
-                    ->schema([
-                        Forms\Components\Fieldset::make('Basis Attribute')
-                            ->schema([
-                                Forms\Components\TextInput::make('courage')
-                                    ->required()
-                                    ->maxLength(255),
-                                Forms\Components\TextInput::make('sagacity')
-                                    ->required()
-                                    ->maxLength(255),
-                                Forms\Components\TextInput::make('intuition')
-                                    ->required()
-                                    ->maxLength(255),
-                                Forms\Components\TextInput::make('charisma')
-                                    ->required()
-                                    ->maxLength(255),
-                                Forms\Components\TextInput::make('dexterity')
-                                    ->required()
-                                    ->maxLength(255),
-                                Forms\Components\TextInput::make('agility')
-                                    ->required()
-                                    ->maxLength(255),
-                                Forms\Components\TextInput::make('constitution')
-                                    ->required()
-                                    ->maxLength(255),
-                                Forms\Components\TextInput::make('strength')
-                                    ->required()
-                                    ->maxLength(255),
-                            ])
-                            ->columns(8),
-                    ]),
-                Forms\Components\Fieldset::make('Meta-Daten')
-                    ->schema([
-                        Forms\Components\Select::make('character_type_id')
-                            ->relationship('characterType', 'name')
-                            ->createOptionForm([
-                                Forms\Components\TextInput::make('name')
-                                    ->required(),
-                            ]),
-                        Forms\Components\Select::make('experience_level_id')
-                            ->relationship('experienceLevel', 'name')
-                            ->createOptionForm([
-                                Forms\Components\TextInput::make('name')
-                                    ->required(),
-                                Forms\Components\TextInput::make('adventure_points')
-                                    ->required()
-                                    ->numeric(),
-                                Forms\Components\TextInput::make('maximum_attribute_value')
-                                    ->required()
-                                    ->numeric(),
-                                Forms\Components\TextInput::make('maximum_skill_value')
-                                    ->required()
-                                    ->numeric(),
-                                Forms\Components\TextInput::make('maximum_combat_technique_value')
-                                    ->required()
-                                    ->numeric(),
-                                Forms\Components\TextInput::make('maximum_attribute_points')
-                                    ->required()
-                                    ->numeric(),
-                                Forms\Components\TextInput::make('total_number_spells_rituals')
-                                    ->required()
-                                    ->numeric(),
-                                Forms\Components\TextInput::make('number_foreign_spells')
-                                    ->required()
-                                    ->numeric(),
-                            ]),
-                        Forms\Components\TextInput::make('total_ap')
-                            ->required()
-                            ->numeric(),
-                        Forms\Components\TextInput::make('ap_unused')
-                            ->required()
-                            ->numeric(),
-                        Forms\Components\TextInput::make('ap_used')
-                            ->required()
-                            ->numeric(),
-                        Forms\Components\Toggle::make('alive')
-                            ->required(),
-                    ])
-                ->columns(3),
-                Forms\Components\Fieldset::make('Persönliche Daten')
-                    ->schema([
-                        Forms\Components\TextInput::make('character_name'),
-                        Forms\Components\TextInput::make('family'),
-                        Forms\Components\TextInput::make('place_of_birth'),
-                        Forms\Components\TextInput::make('date_of_birth'),
-                        Forms\Components\TextInput::make('sex'),
-                        Forms\Components\TextInput::make('size')
-                            ->numeric(),
-                        Forms\Components\TextInput::make('age')
-                            ->numeric(),
-                        Forms\Components\TextInput::make('height')
-                            ->numeric(),
-                        Forms\Components\TextInput::make('weight')
-                            ->numeric(),
-                        Forms\Components\TextInput::make('hair_color'),
-                        Forms\Components\TextInput::make('eye_color'),
-                        Forms\Components\TextInput::make('title'),
-                        Forms\Components\TextInput::make('social_status'),
-                        Forms\Components\Select::make('species_id')
-                            ->relationship('species', 'name')
-                            ->createOptionForm([
-                                Forms\Components\TextInput::make('name')
-                                    ->required(),
-                                Forms\Components\TextInput::make('ap_value')
-                                    ->required()
-                                    ->numeric(),
-                            ]),
-                        Forms\Components\Select::make('culture_id')
-                            ->relationship('culture', 'name')
-                            ->createOptionForm([
-                                Forms\Components\TextInput::make('name')
-                                    ->required(),
-                                Forms\Components\TextInput::make('ap_value')
-                                    ->required()
-                                    ->numeric(),
-                            ]),
-                        Forms\Components\Select::make('profession_id')
-                            ->relationship('profession', 'name')
-                            ->createOptionForm([
-                                Forms\Components\TextInput::make('name')
-                                    ->required(),
-                                Forms\Components\Select::make('profession_group_id')
-                                    ->relationship('professionGroup', 'name')
-                                    ->required()
-                                    ->createOptionForm([
-                                        Forms\Components\TextInput::make('name')
-                                            ->required()
-                                    ]),
-                            ]),
-                        Forms\Components\Textarea::make('characteristics')
-                            ->columnSpan(2),
-                        Forms\Components\Textarea::make('backstory')
-                            ->columnSpan(2),
-                        Forms\Components\Textarea::make('other_information')
-                            ->columnSpanFull(),
-                    ])
-                    ->columns(4),
-                Forms\Components\Group::make()
-                    ->relationship('attributes')
-                    ->schema([
-                        Forms\Components\Fieldset::make('Basis Werte')
-                            ->schema([
-                                Forms\Components\TextInput::make('life_points')
-                                    ->required()
-                                    ->maxLength(255),
-                                Forms\Components\TextInput::make('arcane_energy')
-                                    ->required()
-                                    ->maxLength(255),
-                                Forms\Components\TextInput::make('karma_points')
-                                    ->required()
-                                    ->maxLength(255),
-                                Forms\Components\TextInput::make('spirit')
-                                    ->required()
-                                    ->maxLength(255),
-                                Forms\Components\TextInput::make('toughness')
-                                    ->required()
-                                    ->maxLength(255),
-                                Forms\Components\TextInput::make('dodge')
-                                    ->required()
-                                    ->maxLength(255),
-                                Forms\Components\TextInput::make('initiative')
-                                    ->required()
-                                    ->maxLength(255),
-                                Forms\Components\TextInput::make('movement')
-                                    ->required()
-                                    ->maxLength(255),
-                                Forms\Components\TextInput::make('fate_points')
-                                    ->required()
-                                    ->maxLength(255),
-                                Forms\Components\TextInput::make('carrying_capacity')
-                                    ->required()
-                                    ->maxLength(255),
-                            ])
-                            ->columns(4)
-                    ])
-                    ->columnSpanFull(),
-                Forms\Components\Repeater::make('advantagecharacters')
-                    ->relationship('advantagecharacters')
-                    ->schema([
-                        Forms\Components\Select::make('advantage_id')
-                            ->relationship('advantage', 'name')
-                            ->required(),
-                    ])
-                    ->columnStart(0)
-                    ->columnSpan(1),
-                Forms\Components\Repeater::make('characterdisadvantages')
-                    ->relationship('characterdisadvantages')
-                    ->schema([
-                        Forms\Components\Select::make('disadvantage_id')
-                            ->relationship('disadvantage', 'name')
-                            ->required(),
-                    ])
-                    ->columnStart(0)
-                    ->columnSpan(1),
+
             ]);
     }
 
@@ -264,7 +69,6 @@ class CharacterResource extends Resource
                         Infolists\Components\TextEntry::make('sex'),
                         Infolists\Components\TextEntry::make('size'),
                         Infolists\Components\TextEntry::make('age'),
-                        Infolists\Components\TextEntry::make('height'),
                         Infolists\Components\TextEntry::make('weight'),
                         Infolists\Components\TextEntry::make('hair_color'),
                         Infolists\Components\TextEntry::make('eye_color'),
@@ -299,7 +103,11 @@ class CharacterResource extends Resource
         return [
             'index' => Pages\ListCharacters::route('/'),
             'create' => Pages\CreateCharacter::route('/create'),
+            'edit-meta' => Pages\EditCharacterMeta::route('/{record}/edit/metadata'),
             'edit' => Pages\EditCharacter::route('/{record}/edit'),
+            'edit-skills' => Pages\EditCharacterSkills::route('/{record}/edit/skills'),
+            'edit-attributes' => Pages\EditCharacterAttributes::route('/{record}/edit/attributes'),
+            'edit-advantages' => Pages\EditCharacterAdvantages::route('/{record}/edit/advantages'),
             'view' => Pages\ViewCharacter::route('/{record}'),
         ];
     }
@@ -309,7 +117,11 @@ class CharacterResource extends Resource
         return $page->generateNavigationItems([
             Pages\ListCharacters::class,
             Pages\ViewCharacter::class,
+            Pages\EditCharacterMeta::class,
             Pages\EditCharacter::class,
+            Pages\EditCharacterAttributes::class,
+            Pages\EditCharacterSkills::class,
+            Pages\EditCharacterAdvantages::class,
         ]);
     }
 }
