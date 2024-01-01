@@ -29,8 +29,11 @@ class AppPanelProvider extends PanelProvider
             ->login()
             ->topNavigation()
             ->spa()
+            // ->font('Cinzel Decorative')
+            // ->font('Metamorphous')
+            ->font('Merriweather')
             ->colors([
-                'primary' => Color::Teal,
+                'primary' => Color::Cyan,
                 'gray' => Color::Sky,
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')

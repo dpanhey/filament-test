@@ -28,7 +28,64 @@ class CharacterResource extends Resource
     {
         return $form
             ->schema([
-
+                Forms\Components\Fieldset::make('Persönliche Daten')
+                    ->schema([
+                        Forms\Components\TextInput::make('character_name')
+                            ->required(),
+                        Forms\Components\TextInput::make('family'),
+                        Forms\Components\TextInput::make('place_of_birth'),
+                        Forms\Components\TextInput::make('date_of_birth'),
+                        Forms\Components\TextInput::make('sex'),
+                        Forms\Components\TextInput::make('size')
+                            ->numeric(),
+                        Forms\Components\TextInput::make('age')
+                            ->numeric(),
+                        Forms\Components\TextInput::make('weight')
+                            ->numeric(),
+                        Forms\Components\TextInput::make('hair_color'),
+                        Forms\Components\TextInput::make('eye_color'),
+                        Forms\Components\TextInput::make('title'),
+                        Forms\Components\TextInput::make('social_status'),
+                        Forms\Components\Select::make('species_id')
+                            ->relationship('species', 'name')
+                            ->createOptionForm([
+                                Forms\Components\TextInput::make('name')
+                                    ->required(),
+                                Forms\Components\TextInput::make('ap_value')
+                                    ->required()
+                                    ->numeric(),
+                            ]),
+                        Forms\Components\Select::make('culture_id')
+                            ->relationship('culture', 'name')
+                            ->createOptionForm([
+                                Forms\Components\TextInput::make('name')
+                                    ->required(),
+                                Forms\Components\TextInput::make('ap_value')
+                                    ->required()
+                                    ->numeric(),
+                            ]),
+                        Forms\Components\Select::make('profession_id')
+                            ->relationship('profession', 'name')
+                            ->createOptionForm([
+                                Forms\Components\TextInput::make('name')
+                                    ->required(),
+                                Forms\Components\Select::make('profession_group_id')
+                                    ->relationship('professionGroup', 'name')
+                                    ->required()
+                                    ->createOptionForm([
+                                        Forms\Components\TextInput::make('name')
+                                            ->required()
+                                    ]),
+                            ])
+                            ->columnspan(2),
+                        Forms\Components\Textarea::make('characteristics')
+                            ->columnSpan(2),
+                        Forms\Components\Textarea::make('backstory')
+                            ->columnSpan(2),
+                        Forms\Components\Textarea::make('other_information')
+                            ->columnSpanFull(),
+                    ])
+                    ->columns(4),
             ]);
     }
 
@@ -88,6 +145,29 @@ class CharacterResource extends Resource
                             ->columnSpanFull(),
                     ])
                     ->columns(4),
+                Infolists\Components\Fieldset::make('Vorteile')
+                    ->schema([
+                        Infolists\Components\RepeatableEntry::make('advantagecharacters')
+                            ->label('')
+                            ->schema([
+                                Infolists\Components\TextEntry::make('advantage.name')
+                                    ->label('')
+                            ])
+                            ->contained(false)
+                            ->grid(2)
+                            ->columnSpanFull()
+                    ])
+                    ->columnSpan(1),
+                Infolists\Components\Fieldset::make('Nachteile')
+                    ->schema([
+                        Infolists\Components\Group::make()
+                            ->relationship('characterDisadvantages')
+                            ->schema([
+                                Infolists\Components\TextEntry::make('disadvantage.name')
+                                    ->label('')
+                            ])
+                        ->columnSpanFull(),
+                    ])->columnSpan(1),
             ]);
     }
 
@@ -102,7 +182,7 @@ class CharacterResource extends Resource
     {
         return [
             'index' => Pages\ListCharacters::route('/'),
-            'create' => Pages\CreateCharacter::route('/create'),
+            // 'create' => Pages\CreateCharacter::route('/create'),
             'edit-meta' => Pages\EditCharacterMeta::route('/{record}/edit/metadata'),
             'edit' => Pages\EditCharacter::route('/{record}/edit'),
             'edit-skills' => Pages\EditCharacterSkills::route('/{record}/edit/skills'),
