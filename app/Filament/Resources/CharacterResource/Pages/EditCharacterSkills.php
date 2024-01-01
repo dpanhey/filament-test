@@ -28,42 +28,10 @@ class EditCharacterSkills extends EditRecord
     {
         return $form
             ->schema([
-                Forms\Components\Fieldset::make('Character Skills')
+                Forms\Components\Fieldset::make('Physical Skills')
                 ->schema([
-                    Forms\Components\Group::make()
-                        ->relationship('attributes')
-                        ->columnSpanFull()
-                        ->schema([
-                            Forms\Components\Fieldset::make('Basis Attribute')
-                                ->schema([
-                                    Forms\Components\TextInput::make('courage')
-                                        ->required()
-                                        ->maxLength(255),
-                                    Forms\Components\TextInput::make('sagacity')
-                                        ->required()
-                                        ->maxLength(255),
-                                    Forms\Components\TextInput::make('intuition')
-                                        ->required()
-                                        ->maxLength(255),
-                                    Forms\Components\TextInput::make('charisma')
-                                        ->required()
-                                        ->maxLength(255),
-                                    Forms\Components\TextInput::make('dexterity')
-                                        ->required()
-                                        ->maxLength(255),
-                                    Forms\Components\TextInput::make('agility')
-                                        ->required()
-                                        ->maxLength(255),
-                                    Forms\Components\TextInput::make('constitution')
-                                        ->required()
-                                        ->maxLength(255),
-                                    Forms\Components\TextInput::make('strength')
-                                        ->required()
-                                        ->maxLength(255),
-                                ])
-                                ->columns(8),
-                        ]),
-                ]),
+
+                    ]),
             ]);
     }
 }

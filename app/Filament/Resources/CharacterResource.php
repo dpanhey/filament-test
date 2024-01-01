@@ -9,14 +9,17 @@ use Faker\Provider\Text;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Infolists;
+use Filament\Infolists\Components\Grid;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use Filament\Resources\Pages\Page;
+use Filament\Support\Enums\FontWeight;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Infolists\Components\TextEntry;
 
 class CharacterResource extends Resource
 {
@@ -117,6 +120,30 @@ class CharacterResource extends Resource
     {
         return $infolist
             ->schema([
+                Infolists\Components\Group::make()
+                    ->relationship('attributes')
+                    ->columnSpanFull()
+                    ->schema([
+                        Infolists\Components\Fieldset::make('Basis Attribute')
+                            ->schema([
+                                Infolists\Components\Fieldset::make('MU')
+                                    ->schema([
+                                        Infolists\Components\TextEntry::make('courage')
+                                            ->label('')
+                                            ->color('danger')
+                                            ->weight(FontWeight::ExtraBold)
+                                            ->size(TextEntry\TextEntrySize::Large),
+                                    ])->columnSpan(1),
+                                Infolists\Components\TextEntry::make('sagacity'),
+                                Infolists\Components\TextEntry::make('intuition'),
+                                Infolists\Components\TextEntry::make('charisma'),
+                                Infolists\Components\TextEntry::make('dexterity'),
+                                Infolists\Components\TextEntry::make('agility'),
+                                Infolists\Components\TextEntry::make('constitution'),
+                                Infolists\Components\TextEntry::make('strength')
+                            ])
+                            ->columns(8)
+                    ]),
                 Infolists\Components\Fieldset::make('Persönliche Daten')
                     ->schema([
                         Infolists\Components\TextEntry::make('character_name'),
@@ -145,29 +172,29 @@ class CharacterResource extends Resource
                             ->columnSpanFull(),
                     ])
                     ->columns(4),
-                Infolists\Components\Fieldset::make('Vorteile')
-                    ->schema([
-                        Infolists\Components\RepeatableEntry::make('advantagecharacters')
-                            ->label('')
-                            ->schema([
-                                Infolists\Components\TextEntry::make('advantage.name')
-                                    ->label('')
-                            ])
-                            ->contained(false)
-                            ->grid(2)
-                            ->columnSpanFull()
-                    ])
+                Infolists\Components\Fieldset::make('Vorteile') ## Nutzbares Layout für Zauber etc.
+                ->schema([
+                    Infolists\Components\RepeatableEntry::make('advantagecharacters')
+                        ->label('')
+                        ->schema([
+                            Infolists\Components\TextEntry::make('advantage.name')
+                                ->label('')
+                        ])
+                        ->contained(false)
+                        ->grid(2)
+                        ->columnSpanFull()
+                ])
                     ->columnSpan(1),
-                Infolists\Components\Fieldset::make('Nachteile')
-                    ->schema([
-                        Infolists\Components\Group::make()
-                            ->relationship('characterDisadvantages')
-                            ->schema([
-                                Infolists\Components\TextEntry::make('disadvantage.name')
-                                    ->label('')
-                            ])
+                Infolists\Components\Fieldset::make('Nachteile') ## Standardlayout für Vorteile/Nachteile/Sonderfertigkeiten/Zaubertricks/Segen...
+                ->schema([
+                    Infolists\Components\Group::make()
+                        ->relationship('characterDisadvantages')
+                        ->schema([
+                            Infolists\Components\TextEntry::make('disadvantage.name')
+                                ->label('')
+                        ])
                         ->columnSpanFull(),
-                    ])->columnSpan(1),
+                ])->columnSpan(1),
             ]);
     }
 
