@@ -6,11 +6,13 @@ use App\Filament\Resources\CharacterResource\Pages;
 use App\Filament\Resources\CharacterResource\RelationManagers;
 use App\Models\Character;
 use Faker\Provider\Text;
+use Filament\Actions\CreateAction;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Infolists;
 use Filament\Infolists\Components\Grid;
 use Filament\Infolists\Infolist;
+use Filament\Resources\Components\Tab;
 use Filament\Resources\Resource;
 use Filament\Resources\Pages\Page;
 use Filament\Support\Enums\FontWeight;
@@ -26,6 +28,7 @@ class CharacterResource extends Resource
     protected static ?string $model = Character::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
 
     public static function form(Form $form): Form
     {
@@ -92,6 +95,11 @@ class CharacterResource extends Resource
             ]);
     }
 
+//    public static function getEloquentQuery(): Builder
+//    {
+//        return parent::getEloquentQuery()->withoutGlobalScopes();
+//    }
+
     public static function table(Table $table): Table
     {
         return $table
@@ -113,7 +121,8 @@ class CharacterResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->modifyQueryUsing(fn (Builder $query) => $query->withoutGlobalScopes());
     }
 
     public static function infolist(Infolist $infolist): Infolist
@@ -209,7 +218,7 @@ class CharacterResource extends Resource
     {
         return [
             'index' => Pages\ListCharacters::route('/'),
-            // 'create' => Pages\CreateCharacter::route('/create'),
+            'create' => Pages\CreateCharacter::route('/create'),
             'edit-meta' => Pages\EditCharacterMeta::route('/{record}/edit/metadata'),
             'edit' => Pages\EditCharacter::route('/{record}/edit'),
             'edit-skills' => Pages\EditCharacterSkills::route('/{record}/edit/skills'),
