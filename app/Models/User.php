@@ -58,4 +58,9 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function ownsCharacter(Character $character): bool
+    {
+        return $this->id === $character->user_id;
+    }
 }

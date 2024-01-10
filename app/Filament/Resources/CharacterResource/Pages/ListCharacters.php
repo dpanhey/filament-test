@@ -24,7 +24,7 @@ class ListCharacters extends ListRecords
         return [
             'Meine Charaktere' => Tab::make()
                 ->modifyQueryUsing(fn (Builder $query) => $query->where('user_id', auth()->id())),
-            'Alle öffentlichen Charaktere' => Tab::make()
+            'Alle Charaktere' => Tab::make()
         ];
     }
 

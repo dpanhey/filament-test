@@ -118,9 +118,7 @@ class CharacterResource extends Resource
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                //
             ])
             ->modifyQueryUsing(fn (Builder $query) => $query->withoutGlobalScopes());
     }
